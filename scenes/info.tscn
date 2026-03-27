@@ -1,0 +1,163 @@
+[gd_scene load_steps=14 format=3 uid="uid://pwahhl5y05o4"]
+
+[ext_resource type="Script" uid="uid://vvd2c8g162vk" path="res://scripts/info.gd" id="1_3wikv"]
+[ext_resource type="Texture2D" uid="uid://ybp0kvsnnigo" path="res://assets/ui/area.png" id="1_rfw83"]
+[ext_resource type="FontFile" uid="uid://d3gfy61rb3ill" path="res://assets/font.otf" id="2_kin2u"]
+[ext_resource type="Texture2D" uid="uid://btyarnummtqw8" path="res://assets/ui/controls.png" id="3_3wikv"]
+[ext_resource type="Texture2D" uid="uid://dguolqp5ebnhg" path="res://assets/ui/close.png" id="5_hoc62"]
+[ext_resource type="Texture2D" uid="uid://dg5p8071da02v" path="res://assets/ui/close-hover.png" id="6_c0okb"]
+[ext_resource type="AudioStream" uid="uid://cui11n10141sn" path="res://assets/sound/pop.mp3" id="7_c0okb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c0a5a"]
+line_spacing = 0.0
+font = ExtResource("2_kin2u")
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_hsacm"]
+font = ExtResource("2_kin2u")
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_hoc62"]
+font = ExtResource("2_kin2u")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_c0okb"]
+font = ExtResource("2_kin2u")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_noc0f"]
+font = ExtResource("2_kin2u")
+font_size = 12
+font_color = Color(1, 0.95, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wqi3p"]
+font = ExtResource("2_kin2u")
+font_size = 19
+font_color = Color(0.915, 0.49, 1, 1)
+
+[node name="info" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3wikv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+offset_left = -111.0
+offset_top = -107.0
+offset_right = 1199.0
+offset_bottom = 816.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.509804)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(540, 360)
+scale = Vector2(4.39453, 4.39453)
+texture = ExtResource("1_rfw83")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 354.0
+offset_top = 101.0
+offset_right = 726.0
+offset_bottom = 155.0
+text = "Tippy Trip"
+label_settings = SubResource("LabelSettings_c0a5a")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+offset_left = 294.0
+offset_top = 164.5
+offset_right = 786.0
+offset_bottom = 187.5
+text = "Made by CoolStop in 13 days for the Gamedev.js 2025 game jam"
+label_settings = SubResource("LabelSettings_hsacm")
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+offset_left = 607.0
+offset_top = 230.5
+offset_right = 777.0
+offset_bottom = 513.5
+text = "Tools used:
+- Godot 4.4
+- Pixilart
+- ChatGPT (For
+  debugging)
+- Itch.io
+- GitHub
+- Garageband
+
+Assets used:
+- Font by Raymond
+  Larabie
+- SFX from Pixabay"
+label_settings = SubResource("LabelSettings_hoc62")
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 1
+offset_left = 293.5
+offset_top = 229.5
+offset_right = 562.5
+offset_bottom = 442.5
+text = "Description:
+Youre going on a camping
+trip to Lake Windy, but
+it seems you've overpacked.
+You dont have any space
+left in your RV, so you
+decide to pile the rest
+of your items on the roof.
+But oh no, its a little
+bit of a bumpy ride. Drive
+carfully so your belongings
+dont fall!"
+label_settings = SubResource("LabelSettings_c0okb")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(431, 525)
+scale = Vector2(4.3125, 4.3125)
+texture = ExtResource("3_3wikv")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 232.0
+offset_top = 55.0
+offset_right = 272.0
+offset_bottom = 95.0
+texture_normal = ExtResource("5_hoc62")
+texture_pressed = ExtResource("6_c0okb")
+texture_hover = ExtResource("6_c0okb")
+stretch_mode = 0
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_c0okb")
+
+[node name="Label5" type="Label" parent="."]
+layout_mode = 0
+offset_left = 602.0
+offset_top = 555.0
+offset_right = 771.0
+offset_bottom = 588.0
+rotation = -0.383903
+text = "All music and art
+made by me!"
+label_settings = SubResource("LabelSettings_noc0f")
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="."]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 184.0
+offset_right = 645.0
+offset_bottom = 207.0
+text = "Theme: BALANCE"
+label_settings = SubResource("LabelSettings_wqi3p")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

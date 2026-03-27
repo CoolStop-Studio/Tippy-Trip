@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://vdc5h6qs480"]
+
+[ext_resource type="Script" uid="uid://dxfxdkons2vv5" path="res://scripts/menu.gd" id="1_yqeox"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yqeox")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 127.0
+offset_right = 497.0
+offset_bottom = 150.0
+text = "game yay"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 461.0
+offset_top = 255.0
+offset_right = 561.0
+offset_bottom = 297.0
+text = "play"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

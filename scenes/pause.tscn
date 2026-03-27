@@ -1,0 +1,163 @@
+[gd_scene load_steps=10 format=3 uid="uid://cf3y5khqviaa2"]
+
+[ext_resource type="Script" uid="uid://dcxxb4qsldw07" path="res://scripts/pause.gd" id="1_r8yp4"]
+[ext_resource type="FontFile" uid="uid://d3gfy61rb3ill" path="res://assets/font.otf" id="2_m0klm"]
+[ext_resource type="Texture2D" uid="uid://drp6jlqi36ihy" path="res://assets/ui/small.png" id="3_cml1b"]
+[ext_resource type="Texture2D" uid="uid://bjjkgvphp74e1" path="res://assets/ui/small-pressed.png" id="4_1xtef"]
+[ext_resource type="Texture2D" uid="uid://bg6eruvknkkkn" path="res://assets/ui/small-hover.png" id="5_xmhi0"]
+[ext_resource type="AudioStream" uid="uid://cui11n10141sn" path="res://assets/sound/pop.mp3" id="6_r1fnm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aicil"]
+font = ExtResource("2_m0klm")
+font_size = 77
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jn4bt"]
+font = ExtResource("2_m0klm")
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_r1fnm"]
+font = ExtResource("2_m0klm")
+font_size = 22
+
+[node name="pause" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_r8yp4")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="title" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -221.5
+offset_right = 51.0
+offset_bottom = -198.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_aicil")
+metadata/_edit_use_anchors_ = true
+
+[node name="menu" type="TextureButton" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 104.0
+offset_right = 128.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_cml1b")
+texture_pressed = ExtResource("4_1xtef")
+texture_hover = ExtResource("5_xmhi0")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Control/menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back to menu"
+label_settings = SubResource("LabelSettings_jn4bt")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="continue" type="TextureButton" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -120.0
+offset_right = 128.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_cml1b")
+texture_pressed = ExtResource("4_1xtef")
+texture_hover = ExtResource("5_xmhi0")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Control/continue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Continue"
+label_settings = SubResource("LabelSettings_r1fnm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="restart" type="TextureButton" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -8.0
+offset_right = 128.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_cml1b")
+texture_pressed = ExtResource("4_1xtef")
+texture_hover = ExtResource("5_xmhi0")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Control/restart"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+label_settings = SubResource("LabelSettings_r1fnm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="click" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("6_r1fnm")
+
+[connection signal="pressed" from="Control/menu" to="Control" method="_on_menu_pressed"]
+[connection signal="pressed" from="Control/continue" to="Control" method="_on_continue_pressed"]
+[connection signal="pressed" from="Control/restart" to="Control" method="_on_restart_pressed"]

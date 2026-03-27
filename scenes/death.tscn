@@ -1,0 +1,214 @@
+[gd_scene load_steps=14 format=3 uid="uid://cqvomtff11dxq"]
+
+[ext_resource type="Script" uid="uid://bnifpg6bsbc53" path="res://scripts/death.gd" id="1_0hhgj"]
+[ext_resource type="FontFile" uid="uid://d3gfy61rb3ill" path="res://assets/font.otf" id="2_w8wr1"]
+[ext_resource type="Texture2D" uid="uid://drp6jlqi36ihy" path="res://assets/ui/small.png" id="3_6up1m"]
+[ext_resource type="Texture2D" uid="uid://bjjkgvphp74e1" path="res://assets/ui/small-pressed.png" id="4_w0no0"]
+[ext_resource type="Texture2D" uid="uid://bg6eruvknkkkn" path="res://assets/ui/small-hover.png" id="5_7205l"]
+[ext_resource type="AudioStream" uid="uid://mkjni8gvegd2" path="res://assets/sound/game_song.mp3" id="7_2m3wi"]
+[ext_resource type="AudioStream" uid="uid://cui11n10141sn" path="res://assets/sound/pop.mp3" id="7_7205l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w8wr1"]
+font = ExtResource("2_w8wr1")
+font_size = 77
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6up1m"]
+font = ExtResource("2_w8wr1")
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_tjai8"]
+font = ExtResource("2_w8wr1")
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_q1r8t"]
+font = ExtResource("2_w8wr1")
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_2m3wi"]
+font = ExtResource("2_w8wr1")
+font_size = 10
+font_color = Color(0.707967, 0.707967, 0.707967, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7205l"]
+font = ExtResource("2_w8wr1")
+font_size = 19
+font_color = Color(1, 1, 0, 1)
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[node name="death" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0hhgj")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="title" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -221.5
+offset_right = 51.0
+offset_bottom = -198.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Crashed!"
+label_settings = SubResource("LabelSettings_w8wr1")
+
+[node name="score" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -157.0
+offset_right = 62.5
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100m"
+label_settings = SubResource("LabelSettings_6up1m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="menu" type="TextureButton" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 64.0
+offset_right = 128.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_6up1m")
+texture_pressed = ExtResource("4_w0no0")
+texture_hover = ExtResource("5_7205l")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Control/menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back to menu"
+label_settings = SubResource("LabelSettings_tjai8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="again" type="TextureButton" parent="Control"]
+z_index = 999
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -48.0
+offset_right = 128.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_6up1m")
+texture_pressed = ExtResource("4_w0no0")
+texture_hover = ExtResource("5_7205l")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Control/again"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play again"
+label_settings = SubResource("LabelSettings_q1r8t")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/again"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -46.5
+offset_top = -34.0
+offset_right = 46.5
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[enter]"
+label_settings = SubResource("LabelSettings_2m3wi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="best" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/best"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 268.0
+offset_top = -172.0
+offset_right = 408.0
+offset_bottom = -149.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.345812
+text = "New best!"
+label_settings = SubResource("LabelSettings_7205l")
+
+[node name="click" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("7_7205l")
+
+[node name="music" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("7_2m3wi")
+volume_db = 4.685
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="Control/menu" to="Control" method="_on_menu_pressed"]
+[connection signal="pressed" from="Control/again" to="Control" method="_on_again_pressed"]

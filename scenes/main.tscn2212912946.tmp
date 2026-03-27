@@ -1,0 +1,147 @@
+[gd_scene load_steps=10 format=3 uid="uid://bb5lo2toq3k2v"]
+
+[ext_resource type="Script" uid="uid://bb4pquccdajb3" path="res://scripts/main.gd" id="1_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://cncxjyghqhb0m" path="res://scenes/car.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://cvlxg7r6tf3t5" path="res://scripts/terrain.gd" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://nfd3oj4ifdpp" path="res://assets/bg/sky.png" id="2_tipki"]
+[ext_resource type="Texture2D" uid="uid://bbbeujsbhqyva" path="res://assets/bg/clouds.png" id="3_85g3d"]
+[ext_resource type="Script" uid="uid://bnifpg6bsbc53" path="res://scripts/death.gd" id="3_sugp2"]
+[ext_resource type="Texture2D" uid="uid://w7vfa0psmrep" path="res://assets/bg/mountains-back.png" id="4_85g3d"]
+[ext_resource type="Texture2D" uid="uid://bd728pw54wb5b" path="res://assets/bg/mountains-front.png" id="5_choun"]
+[ext_resource type="PackedScene" uid="uid://br6f1brjlxk71" path="res://scenes/highscore.tscn" id="5_tbgi4"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_jyhfs")
+
+[node name="bg" type="Node2D" parent="."]
+
+[node name="sky" type="Parallax2D" parent="bg"]
+scroll_scale = Vector2(0.03, 0)
+repeat_size = Vector2(976, 0)
+repeat_times = 13
+
+[node name="Sprite2D" type="Sprite2D" parent="bg/sky"]
+texture_filter = 1
+position = Vector2(538, 254)
+scale = Vector2(7.62537, 7.62537)
+texture = ExtResource("2_tipki")
+
+[node name="clouds" type="Parallax2D" parent="bg"]
+scroll_scale = Vector2(0.05, 0)
+repeat_size = Vector2(976, 0)
+repeat_times = 13
+
+[node name="Sprite2D" type="Sprite2D" parent="bg/clouds"]
+texture_filter = 1
+position = Vector2(538, 254)
+scale = Vector2(7.62537, 7.62537)
+texture = ExtResource("3_85g3d")
+
+[node name="mountains-back" type="Parallax2D" parent="bg"]
+scroll_scale = Vector2(0.07, 0)
+repeat_size = Vector2(976, 0)
+repeat_times = 13
+
+[node name="Sprite2D" type="Sprite2D" parent="bg/mountains-back"]
+texture_filter = 1
+position = Vector2(538, 254)
+scale = Vector2(7.62537, 7.62537)
+texture = ExtResource("4_85g3d")
+
+[node name="mountains-front" type="Parallax2D" parent="bg"]
+scroll_scale = Vector2(0.1, 0)
+repeat_size = Vector2(976, 0)
+repeat_times = 13
+
+[node name="Sprite2D" type="Sprite2D" parent="bg/mountains-front"]
+texture_filter = 1
+position = Vector2(538, 254)
+scale = Vector2(7.62537, 7.62537)
+texture = ExtResource("5_choun")
+
+[node name="car" parent="." instance=ExtResource("1_o5qli")]
+
+[node name="terrain" type="Node2D" parent="."]
+script = ExtResource("2_0wfyh")
+chunk_width = null
+noise_scale = 0.05
+amplitude = 1000.0
+vertical_offset = 0.0
+load_distance = null
+outline_color = null
+base_color = Color(0, 0.486275, 0, 1)
+
+[node name="score" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="score"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="score/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "score:"
+
+[node name="death" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="death"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_sugp2")
+
+[node name="ColorRect" type="ColorRect" parent="death/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="death/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 396.0
+offset_top = 161.0
+offset_right = -670.0
+offset_bottom = -458.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "you diead"
+
+[node name="menu" type="Button" parent="death/Control"]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 324.0
+offset_right = 658.0
+offset_bottom = 367.0
+text = "menu"
+
+[node name="again" type="Button" parent="death/Control"]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 416.0
+offset_right = 659.0
+offset_bottom = 461.0
+text = "again"
+
+[node name="highscore" parent="." instance=ExtResource("5_tbgi4")]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[connection signal="pressed" from="death/Control/menu" to="death/Control" method="_on_menu_pressed"]
+[connection signal="pressed" from="death/Control/again" to="death/Control" method="_on_again_pressed"]

@@ -1,0 +1,281 @@
+[gd_scene load_steps=24 format=3 uid="uid://cncxjyghqhb0m"]
+
+[ext_resource type="Script" uid="uid://bhj4mdb7oq7by" path="res://scripts/car.gd" id="1_c35m8"]
+[ext_resource type="Script" uid="uid://dvq2r2irdueum" path="res://scripts/cam.gd" id="2_4clw4"]
+[ext_resource type="Texture2D" uid="uid://bbxnuymhi03hs" path="res://assets/car/wheel2.png" id="2_50v30"]
+[ext_resource type="Texture2D" uid="uid://bwslb8i4077of" path="res://assets/car/car2.png" id="2_qt2eu"]
+[ext_resource type="Texture2D" uid="uid://dbcss1wfsjxrc" path="res://assets/car/boat.png" id="4_jtldb"]
+[ext_resource type="Texture2D" uid="uid://qh0t1le43tyu" path="res://assets/car/stuff.png" id="5_3mrxu"]
+[ext_resource type="Texture2D" uid="uid://bdlik03p7kc0p" path="res://assets/dirt.png" id="5_ctevm"]
+[ext_resource type="Texture2D" uid="uid://daj6n3vlhc4bh" path="res://assets/car/bike.png" id="6_cp117"]
+[ext_resource type="Texture2D" uid="uid://bdb8yvxth0nxn" path="res://assets/music.png" id="6_uraa1"]
+[ext_resource type="AudioStream" uid="uid://bc27kibwnlbgq" path="res://assets/sound/crash.mp3" id="10_gm33m"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c35m8"]
+friction = 999.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfpmx"]
+radius = 15.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7mm7"]
+size = Vector2(84, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtldb"]
+size = Vector2(90, 122)
+
+[sub_resource type="Curve" id="Curve_uraa1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.735294, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gm33m"]
+curve = SubResource("Curve_uraa1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ugdpj"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(0.1, 0.1, 1)
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(-1, -1, 0)
+spread = 18.976
+initial_velocity_min = 63.22
+initial_velocity_max = 132.19
+gravity = Vector3(0, 98, 0)
+scale_min = 3.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_gm33m")
+
+[sub_resource type="Curve" id="Curve_gm33m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.610294, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ugdpj"]
+curve = SubResource("Curve_gm33m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hylxu"]
+particle_flag_disable_z = true
+direction = Vector3(1, -1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_ugdpj")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c35m8"]
+size = Vector2(66, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qt2eu"]
+size = Vector2(54, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50v30"]
+size = Vector2(31, 26.5)
+
+[node name="car" type="Node2D"]
+script = ExtResource("1_c35m8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -42)
+position_smoothing_enabled = true
+script = ExtResource("2_4clw4")
+
+[node name="wheel1" type="RigidBody2D" parent="."]
+position = Vector2(-27, -15)
+physics_material_override = SubResource("PhysicsMaterial_c35m8")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="wheel1"]
+node_a = NodePath("..")
+node_b = NodePath("../../car")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wheel1"]
+shape = SubResource("CircleShape2D_gfpmx")
+
+[node name="ColorRect" type="ColorRect" parent="wheel1"]
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="wheel1"]
+texture_filter = 1
+position = Vector2(-2, -2)
+scale = Vector2(4.28571, 4.28571)
+texture = ExtResource("2_50v30")
+
+[node name="wheel2" type="RigidBody2D" parent="."]
+position = Vector2(27, -15)
+physics_material_override = SubResource("PhysicsMaterial_c35m8")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="wheel2"]
+node_a = NodePath("..")
+node_b = NodePath("../../car")
+softness = 0.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wheel2"]
+shape = SubResource("CircleShape2D_gfpmx")
+
+[node name="ColorRect2" type="ColorRect" parent="wheel2"]
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="wheel2"]
+texture_filter = 1
+position = Vector2(-2, -2)
+scale = Vector2(4.28571, 4.28571)
+texture = ExtResource("2_50v30")
+
+[node name="car" type="RigidBody2D" parent="."]
+position = Vector2(-52, -15)
+mass = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="car"]
+position = Vector2(52, -25)
+shape = SubResource("RectangleShape2D_b7mm7")
+
+[node name="ColorRect" type="ColorRect" parent="car"]
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 94.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="package-holder-base" type="StaticBody2D" parent="car"]
+
+[node name="die" type="Area2D" parent="car"]
+position = Vector2(52, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="car/die"]
+position = Vector2(0, -84)
+shape = SubResource("RectangleShape2D_jtldb")
+
+[node name="Sprite2D" type="Sprite2D" parent="car"]
+texture_filter = 1
+position = Vector2(51.9038, -26.25)
+scale = Vector2(4.03846, 4.03846)
+texture = ExtResource("2_qt2eu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="car"]
+visible = false
+texture_filter = 1
+position = Vector2(15, 10)
+amount = 20
+texture = ExtResource("5_ctevm")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_ugdpj")
+
+[node name="music" type="GPUParticles2D" parent="car"]
+visible = false
+z_index = 999
+texture_filter = 1
+position = Vector2(91, -36)
+amount = 12
+texture = ExtResource("6_uraa1")
+lifetime = 15.0
+process_material = SubResource("ParticleProcessMaterial_hylxu")
+
+[node name="package1" type="RigidBody2D" parent="."]
+position = Vector2(-52, -15)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="package1"]
+position = Vector2(52, -65.5)
+shape = SubResource("RectangleShape2D_c35m8")
+
+[node name="ColorRect" type="ColorRect" parent="package1"]
+offset_left = 19.0
+offset_top = -74.0
+offset_right = 85.0
+offset_bottom = -57.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="PinJoint2D" type="PinJoint2D" parent="package1"]
+position = Vector2(52, -49)
+node_a = NodePath("..")
+node_b = NodePath("../../car/package-holder-base")
+bias = 0.9
+softness = 0.05
+
+[node name="package-holder-1" type="StaticBody2D" parent="package1"]
+
+[node name="Sprite2D" type="Sprite2D" parent="package1"]
+texture_filter = 1
+position = Vector2(52, -63)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("4_jtldb")
+
+[node name="package2" type="RigidBody2D" parent="."]
+position = Vector2(-52, -15)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="package2"]
+position = Vector2(52, -88.5)
+shape = SubResource("RectangleShape2D_qt2eu")
+
+[node name="ColorRect" type="ColorRect" parent="package2"]
+offset_left = 25.0
+offset_top = -101.0
+offset_right = 79.0
+offset_bottom = -76.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="PinJoint2D" type="PinJoint2D" parent="package2"]
+position = Vector2(52, -74)
+node_a = NodePath("..")
+node_b = NodePath("../../package1/package-holder-1")
+bias = 0.9
+softness = 0.05
+
+[node name="package-holder-2" type="StaticBody2D" parent="package2"]
+
+[node name="Sprite2D" type="Sprite2D" parent="package2"]
+texture_filter = 1
+position = Vector2(52, -86)
+scale = Vector2(3.86111, 3.86111)
+texture = ExtResource("5_3mrxu")
+
+[node name="package3" type="RigidBody2D" parent="."]
+position = Vector2(-52, -15)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="package3"]
+position = Vector2(52.5, -115.75)
+shape = SubResource("RectangleShape2D_50v30")
+
+[node name="ColorRect" type="ColorRect" parent="package3"]
+offset_left = 37.0
+offset_top = -129.0
+offset_right = 68.0
+offset_bottom = -102.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="PinJoint2D" type="PinJoint2D" parent="package3"]
+position = Vector2(52, -101)
+node_a = NodePath("..")
+node_b = NodePath("../../package2/package-holder-2")
+bias = 0.9
+softness = 0.1
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="package3"]
+position = Vector2(52, -107)
+node_a = NodePath("..")
+node_b = NodePath("../../car/package-holder-base")
+bias = 0.9
+disable_collision = false
+length = 65535.0
+damping = 16.0
+
+[node name="Sprite2D" type="Sprite2D" parent="package3"]
+texture_filter = 1
+position = Vector2(53, -113)
+scale = Vector2(4.35714, 4.35714)
+texture = ExtResource("6_cp117")
+
+[node name="die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_gm33m")
+
+[connection signal="body_shape_entered" from="car/die" to="." method="_on_die_body_shape_entered"]
